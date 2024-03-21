@@ -24,7 +24,7 @@ export default function Navigation() {
             </div>
             :
             <>
-              <button className="btn btn-outline " onClick={() => signIn()}>
+              <button className="btn btn-outline " onClick={() => signIn('google')}>
                 Sign in</button>
             </>}
         </div>
