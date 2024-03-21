@@ -18,11 +18,19 @@ export default function Home() {
 
   useEffect(() => {
     if (idToken) {
-      setIsCategoriesLoading(true);
-      listCategories(idToken)
-      .then(setCategories)
-      .catch(toast.error)
-      .finally(() => setIsCategoriesLoading(false));
+      const fetchData = async () => {
+        try {
+          const categories = await listCategories(idToken);
+          setCategories(categories);
+        } catch (error) {
+          toast.error('An error occurred while listing the categories.');
+        }
+        finally {
+          setIsCategoriesLoading(false);
+        }
+      };
+  
+      fetchData();
     }
   }, [idToken]);
 
