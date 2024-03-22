@@ -11,8 +11,8 @@ export default function Home() {
   const [amount, setAmount] = useState('10');
   const [description, setDescription] = useState('Dote');
   const [category, setCategory] = useState('');
-    const [isExpenseCreating, setIsExpenseCreating] = useState(false);
-  const [isCategoriesLoading, setIsCategoriesLoading] = useState(false);
+  const [isExpenseCreating, setIsExpenseCreating] = useState(false);
+  const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
   const { data: session } = useSession();
   const idToken = session?.user?.name;
 
@@ -20,6 +20,7 @@ export default function Home() {
     if (idToken) {
       const fetchData = async () => {
         try {
+          setIsCategoriesLoading(true);
           const categories = await listCategories(idToken);
           setCategories(categories);
         } catch (error) {
