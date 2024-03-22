@@ -8,8 +8,8 @@ import { toast, Toaster } from 'react-hot-toast';
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [amount, setAmount] = useState('10');
-  const [description, setDescription] = useState('Dote');
+  const [amount, setAmount] = useState('');
+  const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [isExpenseCreating, setIsExpenseCreating] = useState(false);
   const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
@@ -30,7 +30,7 @@ export default function Home() {
           setIsCategoriesLoading(false);
         }
       };
-  
+
       fetchData();
     }
   }, [idToken]);
@@ -68,35 +68,40 @@ export default function Home() {
 
     <div className="flex items-center justify-center pt-5">
       <Toaster />
-      <form onSubmit={handleSubmit}>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Date</span>
-          </label>
-          <input type="date" className={`input input-bordered`} defaultValue={date} required onChange={e => setDate(e.target.value)} />
-          <label className="label">
-            <span className="label-text">Amount</span>
-          </label>
-          <input type="number" step="0.01" className={`input input-bordered`} defaultValue={amount} required onChange={e => setAmount(e.target.value)} />
-          <label className="label">
-            <span className="label-text">Description</span>
-          </label>
-          <input type="text" className={`input input-bordered`} defaultValue={description} required onChange={e => setDescription(e.target.value)} />
-          <label className="label">
-            <span className="label-text">Category</span>
-            {isCategoriesLoading && <span className="loading loading-ring loading-xs"></span>}
-          </label>
-          <select defaultValue={''} onChange={e => setCategory(e.target.value)} required className={`select select-bordered w-full max-w-xs`}>
-            <option key={0} value={''} disabled >Select a category</option>
-            {categories.map((category: Category) => (
-              <option key={category.name} value={category.name}>{category.name}</option>
-            ))}
-          </select>
+      <div className="card w-11/12 max-w-md bg-base-100 shadow-2xl">
+        <div className="card-body">
+          <h2 className="card-title">Expense</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Date</span>
+              </label>
+              <input type="date" className={`input input-bordered`} defaultValue={date} required onChange={e => setDate(e.target.value)} />
+              <label className="label">
+                <span className="label-text">Amount</span>
+              </label>
+              <input type="number" step="0.01" className={`input input-bordered`} defaultValue={amount} required onChange={e => setAmount(e.target.value)} />
+              <label className="label">
+                <span className="label-text">Description</span>
+              </label>
+              <input type="text" className={`input input-bordered`} defaultValue={description} required onChange={e => setDescription(e.target.value)} />
+              <label className="label">
+                <span className="label-text">Category</span>
+                {isCategoriesLoading && <span className="loading loading-ring loading-xs"></span>}
+              </label>
+              <select defaultValue={''} onChange={e => setCategory(e.target.value)} required className={`select select-bordered w-full`}>
+                <option key={0} value={''} disabled >Select a category</option>
+                {categories.map((category: Category) => (
+                  <option key={category.name} value={category.name}>{category.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn btn-primary" disabled={isExpenseCreating}>Add</button>
+            </div>
+          </form>
         </div>
-        <div className="form-control mt-6">
-          <button className="btn btn-primary" disabled={isExpenseCreating}>Add</button>
-        </div>
-      </form>
-    </div >
+      </div>
+    </div>
   );
 }
