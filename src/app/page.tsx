@@ -12,7 +12,7 @@ export default function Home() {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [isExpenseCreating, setIsExpenseCreating] = useState(false);
-  const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
+  const [isCategoriesLoading, setIsCategoriesLoading] = useState(false);
   const { data: session } = useSession();
   const idToken = session?.user?.name;
 
