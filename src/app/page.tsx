@@ -76,7 +76,7 @@ export default function Home() {
               <label className="label">
                 <span className="label-text">Date</span>
               </label>
-              <input type="date" className={`input input-bordered`} defaultValue={date} required onChange={e => setDate(e.target.value)} />
+              <input type="date" className={`input input-bordered w-full`} defaultValue={date} required onChange={e => setDate(e.target.value)} />
               <label className="label">
                 <span className="label-text">Amount</span>
               </label>
