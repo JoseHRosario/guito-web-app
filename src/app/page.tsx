@@ -80,7 +80,7 @@ export default function Home() {
               <label className="label">
                 <span className="label-text">Amount</span>
               </label>
-              <input type="number" step="0.01" className={`input input-bordered`} defaultValue={amount} required onChange={e => setAmount(e.target.value)} />
+              <input type="number" step="0.5" className={`input input-bordered`} defaultValue={amount} required onChange={e => setAmount(e.target.value)} />
               <label className="label">
                 <span className="label-text">Description</span>
               </label>
@@ -90,9 +90,9 @@ export default function Home() {
                 {isCategoriesLoading && <span className="loading loading-ring loading-xs"></span>}
               </label>
               <select defaultValue={''} onChange={e => setCategory(e.target.value)} required className={`select select-bordered w-full`}>
-                <option key={0} value={''} disabled >Select a category</option>
+                <option className='font-sans' key={0} value={''} disabled >Select a category</option>
                 {categories.map((category: Category) => (
-                  <option key={category.name} value={category.name}>{category.name}</option>
+                  <option className='font-sans' key={category.name} value={category.name}>{category.name}</option>
                 ))}
               </select>
             </div>
