@@ -1,8 +1,10 @@
 "use client";
 import { useSession, signOut, signIn } from "next-auth/react"
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 
 export default function Navigation() {
+  const router = useRouter();
   const { data: session } = useSession();
   const imageUrl = session?.user?.image ? session.user.image : 'https://avatars.githubusercontent.com/u/1?v=4';
 
@@ -22,12 +24,12 @@ export default function Navigation() {
                 </div>
               </div>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a onClick={() => signOut()}>Logout</a></li>
+                <li><a onClick={() => signOut({ callbackUrl: '/login' })}>Logout</a></li>
               </ul>
             </div>
             :
             <>
-              <button className="btn btn-outline " onClick={() => signIn('google')}>
+              <button className="btn btn-outline " onClick={() => router.push('/login')}>
                 Sign in</button>
             </>}
         </div>
