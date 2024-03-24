@@ -91,7 +91,7 @@ export default function Home() {
                     <span className="label-text">Category</span>
                     {isCategoriesLoading && <span className="loading loading-ring loading-xs"></span>}
                   </label>
-                  <select defaultValue={''} onChange={e => setCategory(e.target.value)} required className={`select select-bordered w-full`}>
+                  <select defaultValue={'Eating out'} onChange={e => setCategory(e.target.value)} required className={`select select-bordered w-full`}>
                     <option className='font-sans' key={0} value={''} disabled >Select a category</option>
                     {categories.map((category: Category) => (
                       <option className='font-sans' key={category.name} value={category.name}>{category.name}</option>
