@@ -49,7 +49,7 @@ export default function Latest() {
                         </thead>
                         <tbody>
                             {expenses.expenses.map((expense: ExpenseLatest) => (
-                                <tr>
+                                <tr key={expense.storeOrder}>
                                     <td>{expense.date}</td>
                                     <td>{expense.description}</td>
                                     <td>{expense.amount}</td>
