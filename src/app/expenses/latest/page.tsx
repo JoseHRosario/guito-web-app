@@ -18,7 +18,7 @@ export default function Latest() {
             const fetchData = async () => {
                 try {
                     setAreExpensesLoading(true);
-                    const data = await listLatestExpenses(idToken, 5);
+                    const data = await listLatestExpenses(idToken, 15);
                     data.expenses = data.expenses.sort((a, b) => a.storeOrder > b.storeOrder ? -1 : 1); // sort in descending order
                     setExpenses(data);
                 } catch (error) {
