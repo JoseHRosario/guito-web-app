@@ -10,7 +10,7 @@ export const PageContent = ({ title, isLoading, children }: AuthGateProps) => {
     return (
 
         <div className="flex items-center justify-center pt-5">
-            <div className="card w-11/12 max-w-md bg-base-200 shadow-2xl">
+            <div className="card w-11/12 max-w-md bg-base-200 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
                     {isLoading ? (
