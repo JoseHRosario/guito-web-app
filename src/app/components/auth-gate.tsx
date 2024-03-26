@@ -15,7 +15,7 @@ export const AuthGate = ({ children }: AuthGateProps) => {
         if (!idToken) {
             router.push('/login');
         }
-    },[idToken]);
+    });
 
     return <>
         {children}
