@@ -19,6 +19,7 @@ export default function Latest() {
                 try {
                     setAreExpensesLoading(true);
                     const data = await listLatestExpenses(idToken, 5);
+                    data.expenses = data.expenses.sort((a, b) => a.storeOrder > b.storeOrder ? -1 : 1); // sort in descending order
                     setExpenses(data);
                 } catch (error) {
                     toast.error('An error occurred while listing the latest expenses.');
