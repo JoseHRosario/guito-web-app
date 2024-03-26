@@ -39,7 +39,7 @@ export default function Latest() {
             <Toaster />
             <PageContent title="Latest Expenses" isLoading={areExpensesLoading}>
                 <div className="overflow-x-auto">
-                    <table className="table">
+                    <table className="table table-xs">
                         <thead>
                             <tr>
                                 <th>Date</th>
