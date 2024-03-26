@@ -11,7 +11,7 @@ function Login() {
     };
 
     return (
-        <PageContent title="Sign in">
+        <PageContent title="Sign in" isLoading={false}>
             <form onSubmit={handleSubmit}>
                 <div className="form-control mt-6">
                     <button className="btn btn-outline btn-primary">
