@@ -20,7 +20,6 @@ const handler = NextAuth({
                 token.expires_at = (account.expires_at as number);
             } else if (Date.now()/1000 > (token.expires_at as number)) {
                 //Access token has expired, try to update it
-                console.info('Refreshing the token. YEAAAPPP');
                 const body = new URLSearchParams();
                 body.append('client_id', process.env.GOOGLE_ID as string);
                 body.append('client_secret', process.env.GOOGLE_SECRET as string);
@@ -36,7 +35,6 @@ const handler = NextAuth({
                 });
                 
                 const data = await res.json();
-                console.info(data);
 
                 if (res.ok) {
                     token.accessToken = data.access_token;
