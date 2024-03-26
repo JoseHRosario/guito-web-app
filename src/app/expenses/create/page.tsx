@@ -95,9 +95,9 @@ export default function CreateExpense() {
                 </label>
                 <select value={category} onChange={e => setCategory(e.target.value)} required className={`select select-bordered w-full`}>
                   <option className='font-sans' key={0} value={''} disabled >Select a category</option>
-                  {categories.categories.map((category: CategoryListDetail) => (
+                  {/* {categories.categories.map((category: CategoryListDetail) => (
                     <option className='font-sans' key={category.name} value={category.name}>{category.name}</option>
-                  ))}
+                  ))} */}
                 </select>
               </div>
               <div className="form-control mt-6">
