@@ -1,16 +1,16 @@
 "use client";
 
-interface AuthGateProps {
+interface ContentWrapperProps {
     title: string;
     isLoading: boolean;
     children: React.ReactNode;
 }
 
-export const PageContent = ({ title, isLoading, children }: AuthGateProps) => {
+export const ContentWrapper = ({ title, isLoading, children }: ContentWrapperProps) => {
     return (
 
         <div className="flex items-center justify-center pt-5">
-            <div className="card w-11/12 max-w-md bg-base-200 shadow-xl">
+            <div className="card w-11/12 max-w-md shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
                     {isLoading ? (

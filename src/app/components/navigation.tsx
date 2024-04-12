@@ -21,6 +21,8 @@ export default function Navigation() {
           <ul className="menu menu-horizontal px-1 z-40">
             <li><Link href="/expenses/create">Create</Link></li>
             <li><Link href="/expenses/latest">Latest</Link></li>
+            <li><Link href="/expenses/match">Match</Link></li>
+            <li><Link href="/transactions">Transactions</Link></li>
           </ul>
         </div>
         <div className="navbar-end justify-end">
@@ -51,8 +53,10 @@ export default function Navigation() {
                 <ul className="p-2">
                   <li><Link href="/expenses/create">Create</Link></li>
                   <li><Link href="/expenses/latest">Latest</Link></li>
+                  <li><Link href="/expenses/match">Match</Link></li>
                 </ul>
               </li>
+              <li><Link href="/transactions">Bank Transactions</Link></li>
             </ul>
           </div>
         </div>

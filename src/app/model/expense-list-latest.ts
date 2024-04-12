@@ -3,7 +3,7 @@ export interface ExpenseListLatest {
 }
 
 export interface ExpenseLatest {
-  storeOrder: number;
+  storedOrder: number;
   date: string;
   amount: string;
   description: string;

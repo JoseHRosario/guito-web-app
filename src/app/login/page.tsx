@@ -1,7 +1,7 @@
 "use client";
 import { signIn } from "next-auth/react"
 import { FaGoogle } from 'react-icons/fa';
-import { PageContent } from '@/app/components/page-content';
+import { ContentWrapper } from '@/app/components/content-wrapper';
 
 function Login() {
 
@@ -11,7 +11,7 @@ function Login() {
     };
 
     return (
-        <PageContent title="Sign in" isLoading={false}>
+        <ContentWrapper title="Sign in" isLoading={false}>
             <form onSubmit={handleSubmit}>
                 <div className="form-control mt-6">
                     <button className="btn btn-outline btn-primary">
@@ -19,7 +19,7 @@ function Login() {
                     </button>
                 </div>
             </form>
-        </PageContent>
+        </ContentWrapper>
     );
 }
 

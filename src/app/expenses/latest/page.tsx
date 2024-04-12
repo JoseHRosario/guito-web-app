@@ -1,16 +1,14 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { UseIdToken } from '@/app/hooks/use-id-token';
-import { AuthGate } from '@/app/components/auth-gate';
-import { PageContent } from '@/app/components/page-content';
-import { listLatestExpenses } from '../../services/expenseService'; // adjust the import path as needed
+import { ContentWrapper } from '@/app/components/content-wrapper';
+import { listLatestExpenses } from '../../services/expenseService';
 import { ExpenseListLatest, ExpenseLatest } from '../../model/expense-list-latest';
 import { toast, Toaster } from 'react-hot-toast';
 
 export default function Latest() {
     const [expenses, setExpenses] = useState<ExpenseListLatest>({ expenses: [] });
     const [areExpensesLoading, setAreExpensesLoading] = useState(false);
-
     const idToken = UseIdToken();
 
     useEffect(() => {
@@ -19,7 +17,7 @@ export default function Latest() {
                 try {
                     setAreExpensesLoading(true);
                     const data = await listLatestExpenses(idToken, 15);
-                    data.expenses = data.expenses.sort((a, b) => a.storeOrder > b.storeOrder ? -1 : 1); // sort in descending order
+                    data.expenses = data.expenses.sort((a, b) => a.storedOrder > b.storedOrder ? -1 : 1); // sort in descending order
                     setExpenses(data);
                 } catch (error) {
                     toast.error('An error occurred while listing the latest expenses.');
@@ -35,9 +33,9 @@ export default function Latest() {
     }, [idToken]);
 
     return (
-        <AuthGate>
+        <>
             <Toaster />
-            <PageContent title="Latest Expenses" isLoading={areExpensesLoading}>
+            <ContentWrapper title="Latest Expenses" isLoading={areExpensesLoading}>
                 <div className="overflow-x-auto">
                     <table className="table table-xs">
                         <thead>
@@ -49,15 +47,15 @@ export default function Latest() {
                         </thead>
                         <tbody>
                             {expenses.expenses.map((expense: ExpenseLatest) => (
-                                <tr key={expense.storeOrder}>
-                                    <td>{expense.date}</td>
+                                <tr key={expense.storedOrder}>
+                                    <td>{new Date(expense.date).toLocaleDateString()}</td>
                                     <td>{expense.description}</td>
-                                    <td>{expense.amount}</td>
+                                    <td>€ {expense.amount}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
-            </PageContent>
-        </AuthGate>);
+            </ContentWrapper>
+        </>);
 };
