@@ -5,6 +5,7 @@ import { ContentWrapper } from '@/app/components/content-wrapper';
 import { toast, Toaster } from 'react-hot-toast';
 import { Transaction, TransactionList } from '../model/transaction-list';
 import { listTransactions } from '../services/accountService';
+import { ProblemDetails } from '@/app/services/problemDetails';
 
 export default function Transactions() {
     const [transactions, setTransactions] = useState<TransactionList>({ transactions: [] });
@@ -20,7 +21,7 @@ export default function Transactions() {
                     data.transactions = data.transactions.sort((a, b) => a.date > b.date ? -1 : 1); // sort in descending order
                     setTransactions(data);
                 } catch (error) {
-                    toast.error('An error occurred while listing the transactions.');
+                    toast.error(`An error occurred while listing the transactions: ${(error as ProblemDetails).detail}`);
                 }
                 finally {
                     setAreTransactionsLoading(false);

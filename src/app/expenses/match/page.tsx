@@ -8,6 +8,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import { SiGooglesheets } from "react-icons/si";
 import { BsCreditCardFill } from "react-icons/bs";
 import { CreateExpenseForm } from '@/app/components/create-expense-form';
+import { ProblemDetails } from '@/app/services/problemDetails';
 
 export default function Match() {
     const [matches, setMatches] = useState<ExpenseMatchList>({ matches: [] });
@@ -40,8 +41,8 @@ export default function Match() {
                     const data = await listExpenseMatches(idToken);
                     data.matches = data.matches.sort((a, b) => a.date > b.date ? -1 : 1); // sort in descending order
                     setMatches(data);
-                } catch (error) {
-                    toast.error('An error occurred while listing the latest expenses.');
+                } catch (error) { 
+                    toast.error(`An error occurred while listing the categories: ${(error as ProblemDetails).detail}`);
                 }
                 finally {
                     setAreMatchesLoading(false);
@@ -58,7 +59,6 @@ export default function Match() {
         setCategory(category);
         setDate(new Date(date));
         setDescription(transaction.description);
-        console.log('page - ', transaction);
         (document.getElementById('modalCreate') as HTMLDialogElement)?.showModal()
     };
 

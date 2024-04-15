@@ -1,6 +1,7 @@
 import { ExpenseCreate } from '../model/expense-create';
 import { ExpenseListLatest } from '../model/expense-list-latest';
 import { ExpenseMatchList } from '../model/expense-match-list';
+import { ProblemDetails } from './problemDetails';
 
 export async function createExpense(expense: ExpenseCreate, idToken: string): Promise<boolean> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_GUITO_API_URL}/expense`, {
@@ -12,7 +13,8 @@ export async function createExpense(expense: ExpenseCreate, idToken: string): Pr
     body: JSON.stringify(expense)
   });
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    const problemDetails: ProblemDetails = await response.json();
+    throw problemDetails;
   }
   
   return true;
@@ -25,7 +27,8 @@ export async function listLatestExpenses(idToken: string, count:number): Promise
       'x-google-idtoken': idToken
     }});
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    const problemDetails: ProblemDetails = await response.json();
+    throw problemDetails;
   }
   const expenses: ExpenseListLatest = await response.json();
   return expenses;
@@ -37,8 +40,10 @@ export async function listExpenseMatches(idToken: string): Promise<ExpenseMatchL
     headers: {
       'x-google-idtoken': idToken
     }});
+    
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    const problemDetails: ProblemDetails = await response.json();
+    throw problemDetails;
   }
   const expenses: ExpenseMatchList = await response.json();
   return expenses;

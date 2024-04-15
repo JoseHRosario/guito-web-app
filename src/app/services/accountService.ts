@@ -1,4 +1,5 @@
 import { TransactionList } from '../model/transaction-list';
+import { ProblemDetails } from './problemDetails';
 
 export async function listTransactions(idToken: string): Promise<TransactionList> {
   
@@ -6,8 +7,10 @@ export async function listTransactions(idToken: string): Promise<TransactionList
     headers: {
       'x-google-idtoken': idToken
     }});
+    
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    const problemDetails: ProblemDetails = await response.json();
+    throw problemDetails;
   }
   const expenses: TransactionList = await response.json();
   return expenses;

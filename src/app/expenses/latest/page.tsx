@@ -5,6 +5,7 @@ import { ContentWrapper } from '@/app/components/content-wrapper';
 import { listLatestExpenses } from '../../services/expenseService';
 import { ExpenseListLatest, ExpenseLatest } from '../../model/expense-list-latest';
 import { toast, Toaster } from 'react-hot-toast';
+import { ProblemDetails } from '@/app/services/problemDetails';
 
 export default function Latest() {
     const [expenses, setExpenses] = useState<ExpenseListLatest>({ expenses: [] });
@@ -20,7 +21,7 @@ export default function Latest() {
                     data.expenses = data.expenses.sort((a, b) => a.storedOrder > b.storedOrder ? -1 : 1); // sort in descending order
                     setExpenses(data);
                 } catch (error) {
-                    toast.error('An error occurred while listing the latest expenses.');
+                    toast.error(`An error occurred while listing the latest expenses: ${(error as ProblemDetails).detail}`);
                 }
                 finally {
                     setAreExpensesLoading(false);

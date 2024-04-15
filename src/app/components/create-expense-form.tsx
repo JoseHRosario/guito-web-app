@@ -5,6 +5,7 @@ import { CategoryList, CategoryListDetail } from '../model/category-list';
 import { ExpenseCreate } from '../model/expense-create';
 import { listCategories } from '../services/categoryService';
 import { createExpense } from '../services/expenseService';
+import { ProblemDetails } from '@/app/services/problemDetails';
 
 interface CreateExpenseFormProps {
     onCategoryError: (message: string) => void;
@@ -77,7 +78,7 @@ export const CreateExpenseForm = ({
                     const categories = await listCategories(idToken);
                     setCategories(categories);
                 } catch (error) {
-                    handleCategoryError('An error occurred while listing the categories.');
+                    handleCategoryError(`An error occurred while listing the categories: ${(error as ProblemDetails).detail}`);
                 }
                 finally {
                     setAreCategoriesLoading(false);
@@ -103,7 +104,7 @@ export const CreateExpenseForm = ({
                 handleCreateSuccess('Expense created successfully!');
             } catch (error) {
                 setIsExpenseCreating(false);
-                handleCreateError('An error occurred while creating the expense.');
+                handleCreateError(`An error occurred while creating the expense: ${(error as ProblemDetails).detail}`);
             }
         }
     };

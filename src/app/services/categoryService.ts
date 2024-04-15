@@ -1,4 +1,5 @@
 import { CategoryList } from '../model/category-list';
+import { ProblemDetails } from './problemDetails';
 
 export async function listCategories(idToken: string): Promise<CategoryList> {
   
@@ -7,7 +8,8 @@ export async function listCategories(idToken: string): Promise<CategoryList> {
       'x-google-idtoken': idToken
     }});
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    const problemDetails: ProblemDetails = await response.json();
+    throw problemDetails;
   }
   const categories: CategoryList = await response.json();
   return categories;

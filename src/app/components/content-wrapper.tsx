@@ -8,7 +8,6 @@ interface ContentWrapperProps {
 
 export const ContentWrapper = ({ title, isLoading, children }: ContentWrapperProps) => {
     return (
-
         <div className="flex items-center justify-center pt-5">
             <div className="card w-11/12 max-w-md shadow-xl">
                 <div className="card-body">
