@@ -14,7 +14,10 @@ export default function CreateExpense() {
   const [category, setCategory] = useState('Eating out');
   const [date, setDate] = useState<Date | null>(null);
 
-  let favorites: ExpenseCreate[] = [{ amount: 2.05, description: 'Coco Verde', category: 'Eating out', date: new Date() }];
+  let favorites: ExpenseCreate[] = [
+    { amount: 2.05, description: 'Coco Verde', category: 'Eating out', date: new Date() },
+    { amount: 0, description: 'Continente', category: 'Groceries', date: new Date() }
+  ];
 
   const handleCategoryError = (message: string) => {
     toast.error(message);
@@ -33,15 +36,17 @@ export default function CreateExpense() {
     <>
       <Toaster />
       <ContentWrapper title="Create Expense" isLoading={false}>
-        Favorites: {favorites.map((favorite, index) => (
-          <button className="btn btn-link" key={index} onClick={() => {
-            setAmount(favorite.amount);
-            setDescription(favorite.description);
-            setCategory(favorite.category);
-          }}>
-            {favorite.description}
-          </button>
-        ))}
+        <div className="card-actions">
+          {favorites.map((favorite, index) => (
+            <button className="btn btn-secondary join-item" key={index} onClick={() => {
+              setAmount(favorite.amount);
+              setDescription(favorite.description);
+              setCategory(favorite.category);
+            }}>
+              {favorite.description}
+            </button>
+          ))}
+        </div>
         <CreateExpenseForm
           onCategoryError={handleCategoryError}
           onCreateSuccess={handleCreateSuccess}
