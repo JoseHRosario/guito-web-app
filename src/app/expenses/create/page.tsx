@@ -38,7 +38,7 @@ export default function CreateExpense() {
       <ContentWrapper title="Create Expense" isLoading={false}>
         <div className="card-actions">
           {favorites.map((favorite, index) => (
-            <button className="btn btn-secondary join-item" key={index} onClick={() => {
+            <button className="btn btn-secondary btn-sm" key={index} onClick={() => {
               setAmount(favorite.amount);
               setDescription(favorite.description);
               setCategory(favorite.category);
