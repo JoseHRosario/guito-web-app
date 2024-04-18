@@ -31,7 +31,7 @@ export default function Latest() {
             fetchData();
         }
 
-    }, [idToken]);
+    });
 
     return (
         <>
