@@ -13,7 +13,7 @@ export default function Navigation() {
     <div className="navbar bg-base-300">
         <div className="navbar-start">
           <Link href="/expenses/create" className="btn btn-ghost text-xl">
-            <Image src="/logo.png" width={20} height={20} alt="Logo" className="navbar-logo" priority />
+            <Image src="/logo192x192.png" width={32} height={32} alt="Logo" className="navbar-logo" priority />
             Guito Helper
           </Link>
         </div>
